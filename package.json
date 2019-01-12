@@ -1,0 +1,16 @@
+{
+  "name": "actormoviematch",
+  "version": "1.0.0",
+  "description": "finds common movie for two actors/actresses",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/project3bootcamp/project3.git",
+  "author": "Jesse W. Salmon, Matt Swinford, Jaime Gonzalez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/project3bootcamp/project3/issues"
+  },
+  "homepage": "https://github.com/project3bootcamp/project3#readme"
+}
