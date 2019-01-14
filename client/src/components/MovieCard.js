@@ -19,7 +19,7 @@ const styles = {
 };
 
 function MovieCard(props) {
-  const { classes,image,title,desc } = props;
+  const { classes, image, title, desc } = props;
   return (
     <Card className={classes.card}>
       <CardActionArea>

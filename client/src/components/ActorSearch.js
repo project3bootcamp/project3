@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import MovieCard from './MovieCard';
+import API from '../utils/API';
 
 const styles = theme => ({
     container: {
@@ -39,9 +40,16 @@ const styles = theme => ({
         [name]: event.target.value,
       });
     };
+
     searchMatchMovie = () => {
         //call api to search for matching movies
-    }
+        API.searchActors()
+          .then(res => {
+            console.log(res.data);
+            this.setState({ MovieList: res.data})
+          })
+          .catch(error => console.log(error));
+    };
   
     render() {
       const { classes } = this.props;
@@ -74,13 +82,15 @@ const styles = theme => ({
             </Button>
           </div>
           <div>
-             <p>Maching Movies:</p>   
-            <Grid container spacing={30} alignItems="stretch" alignContent="stretch">
-            {!this.state.MovieList.length ? (<Typography variant='h4'>No Books Found!</Typography>) :(
-                this.state.MovieList.map(movie => {
+             <p>Matching Movies:</p>   
+            <Grid container spacing={32} alignItems="stretch" alignContent="stretch">
+            {!this.state.MovieList.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :(
+                this.state.MovieList.map((movie, index) => {
                     return (
-                      <Grid key={movie.movieId} style={{'display': 'grid'}} item xs={12} sm={6} >
-                        <MovieCard movie/>
+                      <Grid key={index} style={{'display': 'grid'}} item xs={12} sm={6} >
+                        <MovieCard 
+                          title={movie.ShowName}
+                          image={movie.Image} />
                         </Grid>
                     )     
                 })         
