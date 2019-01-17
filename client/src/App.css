@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  background-image: url(./images/actormatchbckgrnd.png);
+  
+  background:  no-repeat center fixed .2;
+  background-size: cover;
+  
 }
 
 .App-logo {

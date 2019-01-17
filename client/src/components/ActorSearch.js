@@ -56,38 +56,50 @@ const styles = theme => ({
   
       return (
       <div>
-        <form className={classes.container} noValidate autoComplete="off">
-          <TextField
-            id="standard-name"
-            label="Actor 1 Name"
-            className={classes.textField}
-            value={this.state.name}
-            onChange={this.handleChange('actor1name')}
-            margin="normal"
-          />
-          <TextField
-            id="standard-name"
-            label="Actor 1 Name"
-            className={classes.textField}
-            value={this.state.name}
-            onChange={this.handleChange('actor1name')}
-            margin="normal"
-          />
-          </form>
-          <div>
-            <Button variant="contained" className={classes.button}
-            onClick={this.searchMatchMovie}
-            >
-              Search
-            </Button>
-          </div>
-          <div>
-             <p>Matching Movies:</p>   
-            <Grid container spacing={32} alignItems="stretch" alignContent="stretch">
+        <Grid container spacing={32} >
+          <Grid item xs={12}>
+            <Grid container justify="center" spacing={16} >
+              <form className={classes.container} noValidate autoComplete="off">
+                <TextField
+                  id="outlined-name"
+                  label="Actor 1 Name"
+                  className={classes.textField}
+                  value={this.state.name}
+                  onChange={this.handleChange('actor1name')}
+                  margin="normal"
+                  variant="outlined"
+                />
+                <TextField color="#fafafa"
+                  id="ourlined-name"
+                  label="Actor 2 Name"
+                  className={classes.textField}
+                  value={this.state.name}
+                  onChange={this.handleChange('actor2name')}
+                  margin="normal"
+                  variant="outlined"
+                />
+                </form>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container justify="center" spacing={16} >
+                <Button variant="contained" className={classes.button}
+                onClick={this.searchMatchMovie}
+                >
+                  Search
+                </Button>
+              </Grid>
+            </Grid>
+          
+            <Grid item xs={12} >
+             <Grid container spacing={16} justify='center' >
+              <p>Matching Movies:</p>
+             </Grid>
+            <Grid container spacing={32} justify='center' >
             {!this.state.MovieList.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :(
                 this.state.MovieList.map((movie, index) => {
                     return (
-                      <Grid key={index} style={{'display': 'grid'}} item xs={12} sm={6} >
+                      <Grid key={index} style={{'display': 'grid'}} item xs={12} sm={6} justify='center'>
                         <MovieCard 
                           title={movie.ShowName}
                           image={movie.Image} />
@@ -95,10 +107,11 @@ const styles = theme => ({
                     )     
                 })         
             )}
-                        
+            </Grid>            
             </Grid>
-          </div>
-          </div>
+          
+          </Grid>
+      </div>
           );
         }
       }
