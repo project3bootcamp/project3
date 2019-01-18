@@ -2,19 +2,27 @@ import axios from "axios";
 
 export default {
   // Gets basic api search results with test actor
-  searchActors: function() {
-    return axios.get("/api");
-  }
-//   // Gets the book with the given id
-//   getBook: function(id) {
-//     return axios.get("/api/books/" + id);
-//   },
-//   // Deletes the book with the given id
-//   deleteBook: function(id) {
-//     return axios.delete("/api/books/" + id);
-//   },
-//   // Saves a book to the database
-//   saveBook: function(bookData) {
-//     return axios.post("/api/books", bookData);
-//   }
+  searchByName: actorName => {
+    console.log(actorName);
+    return axios.get("/api/" + actorName);
+  },
+
+  searchTMDBID: actorID => {
+    return axios.get("https://api.themoviedb.org/3/find/" + actorID + "?api_key=c92cdcfa44e3261c741c830802ba0c44&language=en-US&external_source=imdb_id");
+  },
+
+  searchTMDBCredits: tmdbID => {
+    return axios.get("https://api.themoviedb.org/3/person/" + tmdbID + "/movie_credits?api_key=c92cdcfa44e3261c741c830802ba0c44&language=en-US");
+  },
+
+  searchTMDBActorImage: tmdbID => {
+    return axios.get("https://api.themoviedb.org/3/person/" + tmdbID + "?api_key=c92cdcfa44e3261c741c830802ba0c44&language=en-US")
+  },
+
+  searchOMDB: movieID => {
+    return axios.get("http://omdbapi.com/?apikey=c1a5ab8c&i=" + movieID);
+  },
+
+
+
 };
