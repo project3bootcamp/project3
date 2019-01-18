@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+//import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
+//import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -60,7 +60,7 @@ class ActorSearch extends React.Component {
       .then(res => {
         console.log(res.data.nconst);
         this.setState({ actor1ID: res.data.nconst });
-
+        console.log(this.state.actor2name);
         API.searchByName(this.state.actor2name)
           .then(res => {
             console.log(res.data.nconst);
@@ -171,9 +171,9 @@ class ActorSearch extends React.Component {
 
     return (
       <div>
-        <Grid container spacing={32} >
+        <Grid container spacing={24} >
           <Grid item xs={12}>
-            <Grid container justify="center" spacing={16} >
+            <Grid container justify="center" spacing={4} >
             <Paper className={classes.root} elevation={1}>
               <form className={classes.container} noValidate autoComplete="off">
                 <TextField

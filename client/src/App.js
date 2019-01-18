@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import MovieCard from './components/MovieCard';
 import ActorSearch from './components/ActorSearch';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { createMuiTheme } from "@material-ui/core/styles";
-//import { ThemeProvider } from "@material-ui/styles";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './store';
 import jwt_decode from 'jwt-decode';
@@ -14,8 +11,6 @@ import Navbar from './components/Navbar';
 import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 if(localStorage.jwtToken) {
