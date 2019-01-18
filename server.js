@@ -1,11 +1,15 @@
 const express = require("express");const mongoose = require('mongoose');
 const path = require("path");
 const PORT = process.env.PORT || 3001;
+const app = express();
+const routes = require("./routes");
+const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const config = require('./db');
 
 const users = require('./routes/user'); 
+
 
 const routes = require("./routes");
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
@@ -24,7 +28,9 @@ app.use(bodyParser.json());
 app.use('/api/users', users);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-}
+};
+
+mongoose.connect("mongodb://localhost/imdb", { useNewUrlParser: true });
 
 app.use(routes);
 
