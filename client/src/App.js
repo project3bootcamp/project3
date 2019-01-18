@@ -4,9 +4,6 @@ import ActorSearch from './components/ActorSearch';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createMuiTheme } from "@material-ui/core/styles";
 //import { ThemeProvider } from "@material-ui/styles";
-
-import './App.css';
-
 import { Provider } from 'react-redux';
 import store from './store';
 import jwt_decode from 'jwt-decode';
@@ -19,7 +16,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import './App.css';
 
 if(localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -32,6 +29,7 @@ if(localStorage.jwtToken) {
     window.location.href = '/login'
   }
 }
+
 class App extends Component {
   render() {
     return (
@@ -43,6 +41,7 @@ class App extends Component {
                 <div className="container">
                   <Route exact path="/register" component={ Register } />
                   <Route exact path="/login" component={ Login } />
+                  <Route exact path="/actorsMatch" component={ActorSearch } />
                 </div>
           </div>
         </Router>
