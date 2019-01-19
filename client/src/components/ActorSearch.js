@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import MovieCard from './MovieCard';
 import API from '../utils/API';
+import ActorCard from './ActorCard';
 
 const styles = theme => ({
   container: {
@@ -51,6 +52,9 @@ class ActorSearch extends React.Component {
     console.log(this.capitalizeNames(event.target.value));
     this.setState({
       [name]: this.capitalizeNames(event.target.value),
+      actor1imageurl: '',
+      actor2imageurl: '',
+      MovieListFinal: []
     });
   };
 
@@ -98,7 +102,8 @@ class ActorSearch extends React.Component {
             this.setState({ actor1TMDBID: actor1TMDBID });
             this.setState({ actor2TMDBID: actor2TMDBID });
             //sends to next function in component
-            this.getTMDBCredits(actor1TMDBID, actor2TMDBID);
+            //this.getTMDBCredits(actor1TMDBID, actor2TMDBID);
+            this.getTMDBImage();
 
           })
       })
@@ -228,13 +233,31 @@ class ActorSearch extends React.Component {
                 <p>Matching Movies:</p>
               </Paper>
             </Grid>
+            {!this.state.actor1imageurl && !this.state.actor2imageurl ? (<Typography variant='h4'>Enter Actors</Typography>) : (
+              <Grid item xs={12}>
+                <Grid container justify='center' spacing={32}>
+                  <Paper className={classes.root} >
+                      <ActorCard
+                        title={this.state.actor1name}
+                        image={this.state.actor1imageurl}
+                      />
+                  </Paper>
+                  <Paper>  
+                      <ActorCard
+                        title={this.state.actor2name}
+                        image={this.state.actor2imageurl}
+                      />
+                  </Paper>
+                </Grid>
+            </Grid>
+            )}
             <Grid container spacing={32} justify='center' >
               {/* JMG adjusted the following line */}
               {!this.state.MovieListFinal.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :
                 // JMG adjusted lines 226 - 231, to correspond with the actual state values
                 (this.state.MovieListFinal.map((movie, index) => {
                   return (
-                    <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} >
+                    <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} justify='center'>
                       <MovieCard
                         title={movie.title}
                         image={movie.image}
@@ -246,7 +269,6 @@ class ActorSearch extends React.Component {
               }
             </Grid>
           </Grid>
-
         </Grid>
       </div>
     );

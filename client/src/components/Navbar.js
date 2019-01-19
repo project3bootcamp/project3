@@ -23,14 +23,12 @@ class Navbar extends Component {
     render() {
         const {isAuthenticated, user} = this.props.auth;
         const authLinks = (
-            
                 <Button style={{color: black[50] }} onClick={this.onLogout.bind(this)}>
                     <img src={user.avatar} alt={user.name} title={user.name}
                         className="rounded-circle"
                         style={{ width: '25px', marginRight: '5px'}} />
                             Logout
                 </Button>
-            
         )
       const guestLinks = (
         <div>
@@ -40,15 +38,13 @@ class Navbar extends Component {
             <Typography variant="h6" style={{flexGrow: 2,color: black[50]}}>
                 <Link style={{color:black[50]}} to="/login">Sign In</Link>
             </Typography>
-        </div>
-          
-          
+        </div>         
       )
         return(
             <div style={{flexGrow: 1}}>
             <AppBar position="static">
             <Toolbar >
-                <Link style={{marginLeft: 0,marginRight: 20,width: 1500,color: black[50]}} to="/">Actor Movie Match</Link>
+                <Link style={{marginLeft: 0,marginRight: 0,width: 1500,color: black[50]}} to="/actorsMatch">Actor Movie Match</Link>
                 <div id="navbarSupportedContent">
                     {isAuthenticated ? authLinks : guestLinks}
                 </div>
