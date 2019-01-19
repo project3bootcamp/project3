@@ -4,6 +4,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../actions/authentication';
 import { withRouter } from 'react-router-dom';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import { AppBar } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import black from '@material-ui/core/colors/grey';
+
+//import Grid from '@material-ui/core/Grid';
+
 
 class Navbar extends Component {
 
@@ -15,32 +23,34 @@ class Navbar extends Component {
     render() {
         const {isAuthenticated, user} = this.props.auth;
         const authLinks = (
-            <ul className="navbar-nav ml-auto">
-                <a href="" className="nav-link" onClick={this.onLogout.bind(this)}>
+                <Button style={{color: black[50] }} onClick={this.onLogout.bind(this)}>
                     <img src={user.avatar} alt={user.name} title={user.name}
                         className="rounded-circle"
                         style={{ width: '25px', marginRight: '5px'}} />
                             Logout
-                </a>
-            </ul>
+                </Button>
         )
       const guestLinks = (
-        <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-                <Link className="nav-link" to="/register">Register</Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="/login">Sign In</Link>
-            </li>
-        </ul>
+        <div>
+           <Typography variant="h6" style={{flexGrow: 2,color: black[50]}}>
+                <Link style={{color:black[50]}} to="/register">Register</Link>
+            </Typography>
+            <Typography variant="h6" style={{flexGrow: 2,color: black[50]}}>
+                <Link style={{color:black[50]}} to="/login">Sign In</Link>
+            </Typography>
+        </div>         
       )
         return(
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <Link className="navbar-brand" to="/">Redux Node Auth</Link>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <div style={{flexGrow: 1}}>
+            <AppBar position="static">
+            <Toolbar >
+                <Link style={{marginLeft: 0,marginRight: 0,width: 1500,color: black[50]}} to="/actorsMatch">Actor Movie Match</Link>
+                <div id="navbarSupportedContent">
                     {isAuthenticated ? authLinks : guestLinks}
                 </div>
-            </nav>
+            </Toolbar>
+            </AppBar>
+            </div>
         )
     }
 }
