@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+//import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
+//import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 import MovieCard from './MovieCard';
 import API from '../utils/API';
 
@@ -59,7 +60,7 @@ class ActorSearch extends React.Component {
       .then(res => {
         console.log(res.data.nconst);
         this.setState({ actor1ID: res.data.nconst });
-
+        console.log(this.state.actor2name);
         API.searchByName(this.state.actor2name)
           .then(res => {
             console.log(res.data.nconst);
@@ -170,6 +171,83 @@ class ActorSearch extends React.Component {
 
     return (
       <div>
+        <Grid container spacing={24} >
+          <Grid item xs={12}>
+            <Grid container justify="center" spacing={4} >
+            <Paper className={classes.root} elevation={1}>
+              <form className={classes.container} noValidate autoComplete="off">
+                <TextField
+                  id="actor1name"
+                  label="Actor 1 Name"
+                  className={classes.textField}
+                  value={this.state.name}
+                  onChange={this.handleChange('actor1name')}
+                  margin="normal"
+                  variant="outlined"
+                />
+                <TextField color="#fafafa"
+                  id="actor2name"
+                  label="Actor 2 Name"
+                  className={classes.textField}
+                  value={this.state.name}
+                  onChange={this.handleChange('actor2name')}
+                  margin="normal"
+                  variant="outlined"
+                />
+                </form>
+                </Paper>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container justify="center" spacing={16} >
+              <Paper className={classes.root} elevation={1}>
+                <Button variant="contained" className={classes.button}
+                onClick={this.searchMatchMovie}
+                >
+                  Search
+                </Button>
+                </Paper>
+              </Grid>
+            </Grid>
+            
+            <Grid item xs={12} >
+                <Grid container spacing={16} justify='center' >
+                <Paper className={classes.root} elevation={1}>
+                  <p>Matching Movies:</p>
+                </Paper>
+                </Grid>
+                <Grid container spacing={32} justify='center' >
+                  {/* JMG adjusted the following line */}
+                    {!this.state.MovieListFinal.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :
+                      // JMG adjusted lines 226 - 231, to correspond with the actual state values
+                      (this.state.MovieListFinal.map((movie, index) => {
+                        return (
+                          <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} >
+                            <MovieCard
+                              title={movie.title}
+                              image={movie.image}
+                            />
+                          </Grid>
+                        )
+                      })
+                      )
+                    }
+                </Grid>            
+            </Grid>
+          
+          </Grid>
+      </div>
+          );
+        }
+      }
+      
+      ActorSearch.propTypes = {
+        classes: PropTypes.object.isRequired,
+      };
+      
+      export default withStyles(styles)(ActorSearch);
+
+      /*
         <form className={classes.container} noValidate autoComplete="off">
           <TextField
             id="standard-name"
@@ -198,21 +276,21 @@ class ActorSearch extends React.Component {
         <div>
           <p>Matching Movies:</p>
           <Grid container spacing={32} alignItems="stretch" alignContent="stretch">
-            {/* JMG adjusted the following line */}
-            {!this.state.MovieListFinal.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :
-              // JMG adjusted lines 226 - 231, to correspond with the actual state values
-              (this.state.MovieListFinal.map((movie, index) => {
-                return (
-                  <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} >
-                    <MovieCard
-                      title={movie.title}
-                      image={movie.image}
-                    />
-                  </Grid>
-                )
-              })
-              )
-            }
+           {JMG adjusted the following line }
+           {!this.state.MovieListFinal.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :
+           // JMG adjusted lines 226 - 231, to correspond with the actual state values
+           (this.state.MovieListFinal.map((movie, index) => {
+             return (
+               <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} >
+                 <MovieCard
+                   title={movie.title}
+                   image={movie.image}
+                 />
+               </Grid>
+             )
+           })
+           )
+         } 
 
           </Grid>
         </div>
@@ -226,4 +304,4 @@ ActorSearch.propTypes = {
 };
 
 export default withStyles(styles)(ActorSearch);
-
+*/
