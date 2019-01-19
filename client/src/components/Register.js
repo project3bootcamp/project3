@@ -62,7 +62,7 @@ class Register extends Component {
         const { errors } = this.state;
         return(
         <div>
-           <Grid container spacing={56} >
+           <Grid container spacing={40} >
             <Grid item xs={12}>
               <Grid container justify="center" spacing={16} >
             <form onSubmit={ this.handleSubmit }>
