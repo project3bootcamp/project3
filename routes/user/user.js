@@ -4,10 +4,10 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
-const validateRegisterInput = require('../validation/register');
-const validateLoginInput = require('../validation/login');
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
-const User = require('../models/User');
+const User = require('../../models/User');
 //defines the register route
 router.post('/register', function(req, res) {
     //checks validation for all inputs
