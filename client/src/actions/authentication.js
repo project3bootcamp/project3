@@ -5,7 +5,7 @@ import setAuthToken from '../setAuthToken';
 import jwt_decode from 'jwt-decode';
 
 export const registerUser = (user, history) => dispatch => {
-    axios.post('/api/users/register', user)
+    axios.post('/user/register', user)
             .then(res => history.push('/login'))
             //if errors caught dispatch actions and reducer will handle the error
             .catch(err => {
@@ -17,7 +17,7 @@ export const registerUser = (user, history) => dispatch => {
 }
 
 export const loginUser = (user) => dispatch => {
-    axios.post('/api/users/login', user)
+    axios.post('/user/login', user)
             .then(res => {
                 //saves the current user
                 const { token } = res.data;

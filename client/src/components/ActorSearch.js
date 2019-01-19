@@ -234,6 +234,7 @@ class ActorSearch extends React.Component {
               </Paper>
             </Grid>
             {!this.state.actor1imageurl && !this.state.actor2imageurl ? (<Typography variant='h4'>Enter Actors</Typography>) : (
+              <Grid>
               <Grid item xs={12}>
                 <Grid container justify='center' spacing={32}>
                   <Paper className={classes.root} >
@@ -249,8 +250,7 @@ class ActorSearch extends React.Component {
                       />
                   </Paper>
                 </Grid>
-            </Grid>
-            )}
+            </Grid>            
             <Grid container spacing={32} justify='center' >
               {/* JMG adjusted the following line */}
               {!this.state.MovieListFinal.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :
@@ -268,6 +268,8 @@ class ActorSearch extends React.Component {
                 )
               }
             </Grid>
+            </Grid>
+            )}
           </Grid>
         </Grid>
       </div>
