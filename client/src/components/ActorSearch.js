@@ -47,15 +47,25 @@ class ActorSearch extends React.Component {
   };
 
   handleChange = name => event => {
+    console.log(event.target.value);
+    console.log(this.capitalizeNames(event.target.value));
     this.setState({
-      [name]: event.target.value,
+      [name]: this.capitalizeNames(event.target.value),
     });
+  };
+
+  //this is a function that will properly capitalize the saved names before storing the name to state
+  capitalizeNames = (name) => {
+    let splitStr = name.toLowerCase().split(' ');
+    for (let i = 0; i < splitStr.length; i++) {
+      splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+    };
+    return splitStr.join(' ');
   };
 
   //starts chain of function to process several API calls to our server and external
   //this function uses our server database to find the unique IMDB ID for each actor
   searchMatchMovie = () => {
-    console.log(this.state.actor1name);
     API.searchByName(this.state.actor1name)
       .then(res => {
         console.log(res.data.nconst);
@@ -173,127 +183,71 @@ class ActorSearch extends React.Component {
       <div>
         <Grid container spacing={24} >
           <Grid item xs={12}>
-            <Grid container justify="center" spacing={4} >
-            <Paper className={classes.root} elevation={1}>
-              <form className={classes.container} noValidate autoComplete="off">
-                <TextField
-                  id="actor1name"
-                  label="Actor 1 Name"
-                  className={classes.textField}
-                  value={this.state.name}
-                  onChange={this.handleChange('actor1name')}
-                  margin="normal"
-                  variant="outlined"
-                />
-                <TextField color="#fafafa"
-                  id="actor2name"
-                  label="Actor 2 Name"
-                  className={classes.textField}
-                  value={this.state.name}
-                  onChange={this.handleChange('actor2name')}
-                  margin="normal"
-                  variant="outlined"
-                />
+            <Grid container justify="center" spacing={8} >
+              <Paper className={classes.root} elevation={1}>
+                <form className={classes.container} noValidate autoComplete="off">
+                  <TextField
+                    id="actor1name"
+                    label="Actor 1 Name"
+                    className={classes.textField}
+                    // JMG changed the value to return the correct state.actor1name
+                    value={this.state.actor1name} 
+                    onChange={this.handleChange('actor1name')}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                  <TextField color="#fafafa"
+                    id="actor2name"
+                    label="Actor 2 Name"
+                    className={classes.textField}
+                    // JMG changed the value to return the correct state.actor1name
+                    value={this.state.actor2name}
+                    onChange={this.handleChange('actor2name')}
+                    margin="normal"
+                    variant="outlined"
+                  />
                 </form>
-                </Paper>
-              </Grid>
+              </Paper>
             </Grid>
-            <Grid item xs={12}>
-              <Grid container justify="center" spacing={16} >
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container justify="center" spacing={16} >
               <Paper className={classes.root} elevation={1}>
                 <Button variant="contained" className={classes.button}
-                onClick={this.searchMatchMovie}
+                  onClick={this.searchMatchMovie}
                 >
                   Search
                 </Button>
-                </Paper>
-              </Grid>
+              </Paper>
             </Grid>
-            
-            <Grid item xs={12} >
-                <Grid container spacing={16} justify='center' >
-                <Paper className={classes.root} elevation={1}>
-                  <p>Matching Movies:</p>
-                </Paper>
-                </Grid>
-                <Grid container spacing={32} justify='center' >
-                  {/* JMG adjusted the following line */}
-                    {!this.state.MovieListFinal.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :
-                      // JMG adjusted lines 226 - 231, to correspond with the actual state values
-                      (this.state.MovieListFinal.map((movie, index) => {
-                        return (
-                          <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} >
-                            <MovieCard
-                              title={movie.title}
-                              image={movie.image}
-                            />
-                          </Grid>
-                        )
-                      })
-                      )
-                    }
-                </Grid>            
+          </Grid>
+
+          <Grid item xs={12} >
+            <Grid container spacing={16} justify='center' >
+              <Paper className={classes.root} elevation={1}>
+                <p>Matching Movies:</p>
+              </Paper>
             </Grid>
-          
+            <Grid container spacing={32} justify='center' >
+              {/* JMG adjusted the following line */}
+              {!this.state.MovieListFinal.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :
+                // JMG adjusted lines 226 - 231, to correspond with the actual state values
+                (this.state.MovieListFinal.map((movie, index) => {
+                  return (
+                    <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} >
+                      <MovieCard
+                        title={movie.title}
+                        image={movie.image}
+                      />
+                    </Grid>
+                  )
+                })
+                )
+              }
+            </Grid>
           </Grid>
-      </div>
-          );
-        }
-      }
-      
-      ActorSearch.propTypes = {
-        classes: PropTypes.object.isRequired,
-      };
-      
-      export default withStyles(styles)(ActorSearch);
 
-      /*
-        <form className={classes.container} noValidate autoComplete="off">
-          <TextField
-            id="standard-name"
-            label="Actor 1 Name"
-            className={classes.textField}
-            value={this.state.name}
-            onChange={this.handleChange('actor1name')}
-            margin="normal"
-          />
-          <TextField
-            id="standard-name"
-            label="Actor 2 Name"
-            className={classes.textField}
-            value={this.state.name}
-            onChange={this.handleChange('actor2name')}
-            margin="normal"
-          />
-        </form>
-        <div>
-          <Button variant="contained" className={classes.button}
-            onClick={this.searchMatchMovie}
-          >
-            Search
-            </Button>
-        </div>
-        <div>
-          <p>Matching Movies:</p>
-          <Grid container spacing={32} alignItems="stretch" alignContent="stretch">
-           {JMG adjusted the following line }
-           {!this.state.MovieListFinal.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :
-           // JMG adjusted lines 226 - 231, to correspond with the actual state values
-           (this.state.MovieListFinal.map((movie, index) => {
-             return (
-               <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} >
-                 <MovieCard
-                   title={movie.title}
-                   image={movie.image}
-                 />
-               </Grid>
-             )
-           })
-           )
-         } 
-
-          </Grid>
-        </div>
+        </Grid>
       </div>
     );
   }
@@ -301,6 +255,64 @@ class ActorSearch extends React.Component {
 
 ActorSearch.propTypes = {
   classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ActorSearch);
+
+/*
+  <form className={classes.container} noValidate autoComplete="off">
+    <TextField
+      id="standard-name"
+      label="Actor 1 Name"
+      className={classes.textField}
+      value={this.state.name}
+      onChange={this.handleChange('actor1name')}
+      margin="normal"
+    />
+    <TextField
+      id="standard-name"
+      label="Actor 2 Name"
+      className={classes.textField}
+      value={this.state.name}
+      onChange={this.handleChange('actor2name')}
+      margin="normal"
+    />
+  </form>
+  <div>
+    <Button variant="contained" className={classes.button}
+      onClick={this.searchMatchMovie}
+    >
+      Search
+      </Button>
+  </div>
+  <div>
+    <p>Matching Movies:</p>
+    <Grid container spacing={32} alignItems="stretch" alignContent="stretch">
+     {JMG adjusted the following line }
+     {!this.state.MovieListFinal.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :
+     // JMG adjusted lines 226 - 231, to correspond with the actual state values
+     (this.state.MovieListFinal.map((movie, index) => {
+       return (
+         <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} >
+           <MovieCard
+             title={movie.title}
+             image={movie.image}
+           />
+         </Grid>
+       )
+     })
+     )
+   }
+
+    </Grid>
+  </div>
+</div>
+);
+}
+}
+
+ActorSearch.propTypes = {
+classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(ActorSearch);
