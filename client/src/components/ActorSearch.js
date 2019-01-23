@@ -33,6 +33,7 @@ const styles = theme => ({
 //JMG adjust this state
 class ActorSearch extends React.Component {
   state = {
+    allActors: [],
     actor1name: '',
     actor2name: '',
     actor1imageurl: '',
@@ -44,7 +45,21 @@ class ActorSearch extends React.Component {
     actor1Credits: [],
     actor2Credits: [],
     baseurl: "https://image.tmdb.org/t/p/original/",
-    MovieListFinal: []
+    MovieListFinal: [],
+  };
+
+  componentDidMount() {
+    console.log('getAll client request made!');
+    let allActorsList = [];
+    API.getNames()
+      .then(res => {
+        console.log(res.data);
+        for (let i = 0; i < res.data.length; i++) {
+          allActorsList.push(res.data[i].primaryName);
+        }
+        this.setState({ allActors: allActorsList });
+        console.log(allActorsList);
+      })
   };
 
   handleChange = name => event => {
@@ -56,6 +71,11 @@ class ActorSearch extends React.Component {
       actor2imageurl: '',
       MovieListFinal: []
     });
+  };
+
+  selectHandleChange = selectedOption => {
+    this.setState({ actor1name: selectedOption });
+    console.log(`Option selected: `, selectedOption);
   };
 
   //this is a function that will properly capitalize the saved names before storing the name to state
@@ -196,11 +216,18 @@ class ActorSearch extends React.Component {
                     label="Actor 1 Name"
                     className={classes.textField}
                     // JMG changed the value to return the correct state.actor1name
-                    value={this.state.actor1name} 
+                    value={this.state.actor1name}
                     onChange={this.handleChange('actor1name')}
                     margin="normal"
                     variant="outlined"
                   />
+
+                  {/* <Select 
+                    value={selectedOption}
+                    onChange={this.selectHandleChange}
+                    options={this.state.allActors}
+                    /> */}
+
                   <TextField color="#fafafa"
                     id="actor2name"
                     label="Actor 2 Name"
@@ -237,19 +264,19 @@ class ActorSearch extends React.Component {
               <Grid item xs={12}>
                 <Grid container justify='center' spacing={32}>
                   <Paper className={classes.root} >
-                      <ActorCard
-                        title={this.state.actor1name}
-                        image={this.state.actor1imageurl}
-                      />
+                    <ActorCard
+                      title={this.state.actor1name}
+                      image={this.state.actor1imageurl}
+                    />
                   </Paper>
-                  <Paper>  
-                      <ActorCard
-                        title={this.state.actor2name}
-                        image={this.state.actor2imageurl}
-                      />
+                  <Paper>
+                    <ActorCard
+                      title={this.state.actor2name}
+                      image={this.state.actor2imageurl}
+                    />
                   </Paper>
                 </Grid>
-            </Grid>
+              </Grid>
             )}
             <Grid container spacing={32} justify='center' >
               {/* JMG adjusted the following line */}

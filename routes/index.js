@@ -4,6 +4,8 @@ const apiRoutes = require("./api/search");
 
 // API Routes
 router.use("/api", apiRoutes);
+// router.use('/users', require('./user/userRoutes'));
+
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {

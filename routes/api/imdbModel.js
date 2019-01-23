@@ -9,22 +9,6 @@ const NameSchema = new Schema({
     primaryName: {
         type: String,
         required: true
-    },
-    birthYear: {
-        type: Number,
-        required: false
-    },
-    deathYear: {
-        type: Number,
-        required: false
-    },
-    primaryProfession: {
-        type: String,
-        required: false
-    },
-    knownForTitles: {
-        type: String,
-        required: true
     }
 },
 { collection : 'names'});
