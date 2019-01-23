@@ -9,8 +9,6 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const config = require('./db');
 
-const users = require('./routes/user');
-
 
 //const routes = require("./routes");
 
@@ -21,6 +19,10 @@ app.use(passport.initialize());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//app.use('/api/users', users);
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+};
 
 // connections to database
 mongoose.connect(config.DB, { useNewUrlParser: true }).then(
