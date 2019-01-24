@@ -60,6 +60,15 @@ router.post('/register', function(req, res) {
         }
     });
 });
+router.post('/update', (req,res) => {
+        db.User
+          .findOneAndUpdate({ _id: req.params.id }, req.body)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => {
+            console.log(err);
+            res.status(422).json(err)
+          })
+});
 //defines the login route
 router.post('/login', (req, res) => {
     //checks validation for all inputs
@@ -117,6 +126,7 @@ router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) =
         name: req.user.name,
         email: req.user.email
     });
+
 });
 
 module.exports = router;

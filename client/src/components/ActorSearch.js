@@ -11,6 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import MovieCard from './MovieCard';
 import API from '../utils/API';
 import ActorCard from './ActorCard';
+import AutoSave from './AutoSave';
 
 const styles = theme => ({
   container: {
@@ -44,8 +45,18 @@ class ActorSearch extends React.Component {
     actor1Credits: [],
     actor2Credits: [],
     baseurl: "https://image.tmdb.org/t/p/original/",
-    MovieListFinal: []
+    MovieListFinal: [],
+    savedsearches: [],
   };
+  
+  onHandleSave(){
+    const obj = {
+      actor1:this.state.actor1name,
+      actor2:this.state.actor2name
+    }
+    this.setState({savedsearches: obj})
+    AutoSave.onSave(this.state.savedsearches);
+  }
 
   handleChange = name => event => {
     console.log(event.target.value);
@@ -222,6 +233,13 @@ class ActorSearch extends React.Component {
                   onClick={this.searchMatchMovie}
                 >
                   Search
+                </Button>
+              </Paper>
+              <Paper className={classes.root} elevation={1}>
+                <Button variant="contained" className={classes.button}
+                  onClick={this.onHandleSave}
+                >
+                  Save Search
                 </Button>
               </Paper>
             </Grid>
