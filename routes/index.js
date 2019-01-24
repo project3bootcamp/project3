@@ -5,6 +5,8 @@ const userRoutes = require("./user/user");
 
 // API Routes
 router.use("/api", apiRoutes);
+// router.use('/users', require('./user/userRoutes'));
+
 
 // User Routes
 router.use("/user",userRoutes);

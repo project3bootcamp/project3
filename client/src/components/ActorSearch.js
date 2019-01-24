@@ -34,6 +34,7 @@ const styles = theme => ({
 //JMG adjust this state
 class ActorSearch extends React.Component {
   state = {
+    allActors: [],
     actor1name: '',
     actor2name: '',
     actor1imageurl: '',
@@ -46,7 +47,24 @@ class ActorSearch extends React.Component {
     actor2Credits: [],
     baseurl: "https://image.tmdb.org/t/p/original/",
     MovieListFinal: [],
+<<<<<<< HEAD
     savedsearches: [],
+=======
+  };
+
+  componentDidMount() {
+    console.log('getAll client request made!');
+    let allActorsList = [];
+    API.getNames()
+      .then(res => {
+        console.log(res.data);
+        for (let i = 0; i < res.data.length; i++) {
+          allActorsList.push(res.data[i].primaryName);
+        }
+        this.setState({ allActors: allActorsList });
+        console.log(allActorsList);
+      })
+>>>>>>> 09500046622ca89c942695fd4fbc8353d2899a29
   };
   
   onHandleSave(){
@@ -67,6 +85,11 @@ class ActorSearch extends React.Component {
       actor2imageurl: '',
       MovieListFinal: []
     });
+  };
+
+  selectHandleChange = selectedOption => {
+    this.setState({ actor1name: selectedOption });
+    console.log(`Option selected: `, selectedOption);
   };
 
   //this is a function that will properly capitalize the saved names before storing the name to state
@@ -207,11 +230,18 @@ class ActorSearch extends React.Component {
                     label="Actor 1 Name"
                     className={classes.textField}
                     // JMG changed the value to return the correct state.actor1name
-                    value={this.state.actor1name} 
+                    value={this.state.actor1name}
                     onChange={this.handleChange('actor1name')}
                     margin="normal"
                     variant="outlined"
                   />
+
+                  {/* <Select 
+                    value={selectedOption}
+                    onChange={this.selectHandleChange}
+                    options={this.state.allActors}
+                    /> */}
+
                   <TextField color="#fafafa"
                     id="actor2name"
                     label="Actor 2 Name"
@@ -256,16 +286,16 @@ class ActorSearch extends React.Component {
               <Grid item xs={12}>
                 <Grid container justify='center' spacing={32}>
                   <Paper className={classes.root} >
-                      <ActorCard
-                        title={this.state.actor1name}
-                        image={this.state.actor1imageurl}
-                      />
+                    <ActorCard
+                      title={this.state.actor1name}
+                      image={this.state.actor1imageurl}
+                    />
                   </Paper>
-                  <Paper>  
-                      <ActorCard
-                        title={this.state.actor2name}
-                        image={this.state.actor2imageurl}
-                      />
+                  <Paper>
+                    <ActorCard
+                      title={this.state.actor2name}
+                      image={this.state.actor2imageurl}
+                    />
                   </Paper>
                 </Grid>
             </Grid>            
@@ -275,7 +305,7 @@ class ActorSearch extends React.Component {
                 // JMG adjusted lines 226 - 231, to correspond with the actual state values
                 (this.state.MovieListFinal.map((movie, index) => {
                   return (
-                    <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} justify='center'>
+                    <Grid key={index} style={{ 'display': 'grid' }}  container item xs={12} sm={6} justify='center' >
                       <MovieCard
                         title={movie.title}
                         image={movie.image}
