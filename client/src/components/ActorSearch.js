@@ -33,7 +33,7 @@ const styles = theme => ({
 //JMG adjust this state
 class ActorSearch extends React.Component {
   state = {
-    allActors: [],
+    // allActors: [],
     actor1name: '',
     actor2name: '',
     actor1imageurl: '',
@@ -44,38 +44,33 @@ class ActorSearch extends React.Component {
     actor2TMDBID: '',
     actor1Credits: [],
     actor2Credits: [],
-    baseurl: "https://image.tmdb.org/t/p/original/",
+    baseurl: "https://image.tmdb.org/t/p/w342/",
     MovieListFinal: [],
   };
 
   componentDidMount() {
-    console.log('getAll client request made!');
-    let allActorsList = [];
-    API.getNames()
-      .then(res => {
-        console.log(res.data);
-        for (let i = 0; i < res.data.length; i++) {
-          allActorsList.push(res.data[i].primaryName);
-        }
-        this.setState({ allActors: allActorsList });
-        console.log(allActorsList);
-      })
+    // console.log('getAll client request made!');
+    // let allActorsList = [];
+    // API.getNames()
+    //   .then(res => {
+    //     console.log(res.data);
+    //     for (let i = 0; i < res.data.length; i++) {
+    //       allActorsList.push(res.data[i].primaryName);
+    //     }
+    //     this.setState({ allActors: allActorsList });
+    //     console.log(allActorsList);
+    //   })
   };
 
   handleChange = name => event => {
-    console.log(event.target.value);
-    console.log(this.capitalizeNames(event.target.value));
+    // console.log(event.target.value);
+    // console.log(this.capitalizeNames(event.target.value));
     this.setState({
       [name]: this.capitalizeNames(event.target.value),
       actor1imageurl: '',
       actor2imageurl: '',
       MovieListFinal: []
     });
-  };
-
-  selectHandleChange = selectedOption => {
-    this.setState({ actor1name: selectedOption });
-    console.log(`Option selected: `, selectedOption);
   };
 
   //this is a function that will properly capitalize the saved names before storing the name to state
@@ -90,12 +85,16 @@ class ActorSearch extends React.Component {
   //starts chain of function to process several API calls to our server and external
   //this function uses our server database to find the unique IMDB ID for each actor
   searchMatchMovie = () => {
-    API.searchByName(this.state.actor1name)
+    let actor1 = this.state.actor1name;
+    let actor2 = this.state.actor2name;
+    actor1 = actor1.replace(/\b[a-z]/g, letter => (letter.toUpperCase()));
+    actor2 = actor2.replace(/\b[a-z]/g, letter => (letter.toUpperCase()));
+    API.searchByName(actor1)
       .then(res => {
         console.log(res.data.nconst);
         this.setState({ actor1ID: res.data.nconst });
         console.log(this.state.actor2name);
-        API.searchByName(this.state.actor2name)
+        API.searchByName(actor2)
           .then(res => {
             console.log(res.data.nconst);
             this.setState({ actor2ID: res.data.nconst });
@@ -144,6 +143,13 @@ class ActorSearch extends React.Component {
       })
   };
 
+  //this function is used to send each TMDB id to the server, which then makes a separate call to TMBD to find the IMDB id for each movie.
+
+  getMovieID = tmdbID => {
+    API.getMovieID(tmdbID)
+      .then(res => res.data)
+  };
+
   //this function uses the actors' TMDB id's to find all the actor's credits, then pulls out specific data and stores in a new object
   getTMDBCredits = () => {
     let actor1titles = [];
@@ -158,7 +164,8 @@ class ActorSearch extends React.Component {
             id: allCredits1[i].id,
             title: allCredits1[i].original_title,
             character: allCredits1[i].character,
-            image: this.state.baseurl + allCredits1[i].poster_path
+            image: this.state.baseurl + allCredits1[i].poster_path,
+            // imdbID: this.getMovieID(allCredits1[i].id)
           };
 
         };
@@ -197,7 +204,13 @@ class ActorSearch extends React.Component {
         };
       };
     };
-    console.log(FinalList);
+    for (let i = 0; i < FinalList.length; i++) {
+      API.getMovieID(FinalList[i].id)
+        .then(res => {
+          FinalList[i].imdbURL = "https://www.imdb.com/title/" + res.data;
+        })
+    }
+    console.log(`Final List:`, FinalList);
     this.setState({ MovieListFinal: FinalList });
   };
 
@@ -288,6 +301,7 @@ class ActorSearch extends React.Component {
                       <MovieCard
                         title={movie.title}
                         image={movie.image}
+                        href={movie.imdbURL}
                       />
                     </Grid>
                   )

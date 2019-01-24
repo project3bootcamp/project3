@@ -9,23 +9,24 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    maxWidth: 345,
+    width: 342,
   },
   media: {
-    height: 140,
+    height: 500,
   },
 };
 
 function MovieCard(props) {
-  const { classes, image, title, desc } = props;
+  const { classes, image, title, desc, href } = props;
   return (
+        
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
           image={image}
           title={title}
-        />
+          />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {title}
