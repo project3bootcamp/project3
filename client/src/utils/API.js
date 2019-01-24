@@ -7,6 +7,10 @@ export default {
     return axios.get("/api/" + actorName);
   },
 
+  getNames: () => {
+    return axios.get('/api/');
+  },
+
   searchTMDBID: actorID => {
     delete axios.defaults.headers.common["Authorization"];
     return axios.get("https://api.themoviedb.org/3/find/" + actorID + "?api_key=c92cdcfa44e3261c741c830802ba0c44&language=en-US&external_source=imdb_id");
