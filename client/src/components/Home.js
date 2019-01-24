@@ -24,7 +24,7 @@ export default class Home extends Component {
                 Home Component
             <Grid container spacing={32} >
               <Grid item xs={12}>
-                <Grid container justify="center" spacing={6} >
+                <Grid container justify="center" spacing={8} >
                 <Paper elevation={1}>
                 <Link style={{color: black[900]}} to="/actorsMatch"> Actors Match</Link>
                 </Paper>
