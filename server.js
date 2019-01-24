@@ -35,7 +35,6 @@ mongoose.connect("mongodb://localhost:27017/imdb", { useNewUrlParser: true }).th
 );
 
 app.use(routes);
-app.use('/api/users', users);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 };
