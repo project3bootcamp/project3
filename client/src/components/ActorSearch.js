@@ -257,7 +257,7 @@ class ActorSearch extends React.Component {
                 // JMG adjusted lines 226 - 231, to correspond with the actual state values
                 (this.state.MovieListFinal.map((movie, index) => {
                   return (
-                    <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} justify='center'>
+                    <Grid key={index} style={{ 'display': 'grid' }}  container item xs={12} sm={6} justify='center' >
                       <MovieCard
                         title={movie.title}
                         image={movie.image}
