@@ -24,14 +24,9 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 };
 
-// connections to database
-mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-  () => {console.log(`Database ${config.DB} is connected`) },
-  err => { console.log('Can not connect to the database'+ err)}
-);
-mongoose.connect("mongodb://localhost:27017/imdb", { useNewUrlParser: true }).then(
-  () => { console.log('Database imdb is connected') },
-  err => { console.log('Can not connect to the database' + err) }
+mongoose.connect("mongodb://jgonzalez:project3@ds111555-a0.mlab.com:11555,ds111555-a1.mlab.com:11555/heroku_h42cwlxh?replicaSet=rs-ds111555", { useNewUrlParser: true }).then(
+  () => {console.log('Database imdb is connected') },
+  err => { console.log('Can not connect to the database'+ err)} 
 );
 
 app.use(routes);

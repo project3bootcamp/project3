@@ -12,7 +12,7 @@ const styles = {
     maxWidth: 200,
   },
   media: {
-    height: 100,
+    height: 200,
   },
 };
 
