@@ -9,10 +9,10 @@ const passport = require('passport');
 const config = require('./db');
 
 
-//  mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-//   () => {console.log(`Database ${config.DB} is connected`) },
-//   err => { console.log('Can not connect to the database'+ err)}
-// ); 
+ mongoose.connect(config.DB, { useNewUrlParser: true }).then(
+  () => {console.log(`Database ${config.DB} is connected`) },
+  err => { console.log('Can not connect to the database'+ err)}
+); 
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());

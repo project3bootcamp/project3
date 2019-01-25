@@ -33,7 +33,11 @@ const styles = theme => ({
 //JMG adjust this state
 class ActorSearch extends React.Component {
   state = {
+<<<<<<< HEAD
     // allActors: [],
+=======
+    allActors: [],
+>>>>>>> 09500046622ca89c942695fd4fbc8353d2899a29
     actor1name: '',
     actor2name: '',
     actor1imageurl: '',
@@ -71,6 +75,11 @@ class ActorSearch extends React.Component {
       actor2imageurl: '',
       MovieListFinal: []
     });
+  };
+
+  selectHandleChange = selectedOption => {
+    this.setState({ actor1name: selectedOption });
+    console.log(`Option selected: `, selectedOption);
   };
 
   //this is a function that will properly capitalize the saved names before storing the name to state
