@@ -60,9 +60,17 @@ router.post('/register', function(req, res) {
         }
     });
 });
+
 router.post('/update', (req,res) => {
-        db.User
-          .findOneAndUpdate({ _id: req.params.id }, req.body)
+    console.log(req.body)
+    const id = req.body.id;
+    const savesearches = {
+        actor1: req.body.actor1,
+        actor2: req.body.actor2
+    }
+   // console.log(req)
+        User
+          .findOneAndUpdate({ _id: id },{$addToSet: {search: [savesearches] }})
           .then(dbModel => res.json(dbModel))
           .catch(err => {
             console.log(err);

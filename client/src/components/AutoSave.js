@@ -1,24 +1,31 @@
 import axios from "axios";
+import decode from 'jwt-decode';
 export default class AutoSave 
+
 {
-  constructor(saveFn, intervalInMs) {
+  constructor(saveFn) {
     this.saveFn = saveFn;
-    this.setIntervalId = setInterval(
-        () => { 
-            this.save();
-        }, 
-        intervalInMs
-    );
-  }
 
-
-  save() {
-    this.saveFn();
-    this.callOnSaveCallback();
   }
+getId() {
+  const token = localStorage.getItem('jwtToken');
+  const decoded = decode(token);
+  console.log(decoded.id)
+  return decoded.id
+
+}
+
 
   onSave(savedsearches) {
-    axios.post('/user/update',savedsearches) 
+      console.log(savedsearches);
+    const id = this.getId();
+    const savedItem = {
+        id: id,
+        actor1: savedsearches.actor1,
+        actor2: savedsearches.actor2
+    }
+    console.log(savedItem);
+    axios.post('/user/update',savedItem) 
     .catch(err => {
         console.log(err);
     });

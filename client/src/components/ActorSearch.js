@@ -47,9 +47,7 @@ class ActorSearch extends React.Component {
     actor2Credits: [],
     baseurl: "https://image.tmdb.org/t/p/original/",
     MovieListFinal: [],
-<<<<<<< HEAD
     savedsearches: [],
-=======
   };
 
   componentDidMount() {
@@ -64,17 +62,18 @@ class ActorSearch extends React.Component {
         this.setState({ allActors: allActorsList });
         console.log(allActorsList);
       })
->>>>>>> 09500046622ca89c942695fd4fbc8353d2899a29
   };
   
-  onHandleSave(){
+  onHandleSave = () =>{
+    const savedName = new AutoSave();
     const obj = {
-      actor1:this.state.actor1name,
-      actor2:this.state.actor2name
+      actor1: this.state.actor1name,
+      actor2: this.state.actor2name
     }
+    console.log(obj)
     this.setState({savedsearches: obj})
-    AutoSave.onSave(this.state.savedsearches);
-  }
+    savedName.onSave(obj);
+  };
 
   handleChange = name => event => {
     console.log(event.target.value);
