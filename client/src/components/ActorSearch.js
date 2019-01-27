@@ -12,6 +12,7 @@ import MovieCard from './MovieCard';
 import API from '../utils/API';
 import ActorCard from './ActorCard';
 import Modal from '@material-ui/core/Modal';
+import AutoSave from './AutoSave';
 
 const styles = theme => ({
   container: {
@@ -70,7 +71,8 @@ class ActorSearch extends React.Component {
     baseurl: "https://image.tmdb.org/t/p/w342/",
     MovieListFinal: [],
     actorModalOpen: false,
-    searchModalOpen: false
+    searchModalOpen: false,
+    savedsearches: [],
   };
 
   handleActorModalOpen = () => {
@@ -91,6 +93,17 @@ class ActorSearch extends React.Component {
 
   componentDidMount() {
   };
+  
+  onHandleSave = () =>{
+    const savedName = new AutoSave();
+    const obj = {
+      actor1: this.state.actor1name,
+      actor2: this.state.actor2name
+    }
+    console.log(obj)
+    this.setState({savedsearches: obj})
+    savedName.onSave(obj);
+  };
 
   handleChange = name => event => {
     this.setState({
@@ -99,6 +112,11 @@ class ActorSearch extends React.Component {
       actor2imageurl: '',
       MovieListFinal: []
     });
+  };
+
+  selectHandleChange = selectedOption => {
+    this.setState({ actor1name: selectedOption });
+    console.log(`Option selected: `, selectedOption);
   };
 
   //this is a function that will properly capitalize the saved names before storing the name to state
@@ -338,6 +356,13 @@ class ActorSearch extends React.Component {
                   onClick={this.searchMatchMovie}
                 >
                   Search
+                </Button>
+              </Paper>
+              <Paper className={classes.root} elevation={1}>
+                <Button variant="contained" className={classes.button}
+                  onClick={this.onHandleSave}
+                >
+                  Save Search
                 </Button>
               </Paper>
             </Grid>

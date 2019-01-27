@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import black from '@material-ui/core/colors/grey';
 
 export default class Home extends Component {
-    render() {
+    handleClick = () => {
+        console.log('this is:', this);
+      }
+    
+      render() {
         return (
             <div>
                 Home Component
@@ -20,5 +25,5 @@ export default class Home extends Component {
             </Grid>
             </div>
         );
+      }
     }
-}

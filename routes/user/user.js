@@ -60,6 +60,23 @@ router.post('/register', function(req, res) {
         }
     });
 });
+
+router.post('/update', (req,res) => {
+    console.log(req.body)
+    const id = req.body.id;
+    const savesearches = {
+        actor1: req.body.actor1,
+        actor2: req.body.actor2
+    }
+   // console.log(req)
+        User
+          .findOneAndUpdate({ _id: id },{$addToSet: {search: [savesearches] }})
+          .then(dbModel => res.json(dbModel))
+          .catch(err => {
+            console.log(err);
+            res.status(422).json(err)
+          })
+});
 //defines the login route
 router.post('/login', (req, res) => {
     //checks validation for all inputs
@@ -117,6 +134,7 @@ router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) =
         name: req.user.name,
         email: req.user.email
     });
+
 });
 
 module.exports = router;
