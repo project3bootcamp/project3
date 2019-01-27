@@ -127,6 +127,15 @@ router.post('/login', (req, res) => {
                     });
         });
 });
+
+router.get('/:id',(req,res) => {
+    User.findById({ _id: req.params.id })
+    .then(dbModel => res.json(dbModel))
+          .catch(err => {
+            console.log(err);
+            res.status(422).json(err)
+          })
+});
 //if no jwt user will be redirected back to log in because of the protected route
 router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) => {
     return res.json({
