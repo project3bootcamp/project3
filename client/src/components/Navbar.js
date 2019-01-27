@@ -23,12 +23,15 @@ class Navbar extends Component {
     render() {
         const {isAuthenticated, user} = this.props.auth;
         const authLinks = (
+            <div>
                 <Button style={{color: black[50] }} onClick={this.onLogout.bind(this)}>
                     <img src={user.avatar} alt={user.name} title={user.name}
                         className="rounded-circle"
                         style={{ width: '25px', marginRight: '5px'}} />
                             Logout
                 </Button>
+                <Link style={{marginLeft: 0,marginRight: 0,width: 1500,color: black[50]}} to="/">Profile</Link>
+            </div>
         )
       const guestLinks = (
         <div>

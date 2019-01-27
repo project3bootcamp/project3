@@ -92,6 +92,11 @@ class ActorSearch extends React.Component {
   };
 
   componentDidMount() {
+    const {actor1, actor2} = {...this.props};
+    if(actor1 !== undefined && actor2 !== undefined){
+      this.setState({actor1name: actor1,actor2name:actor2})
+      this.searchMatchMovie();
+    }
   };
   
   onHandleSave = () =>{

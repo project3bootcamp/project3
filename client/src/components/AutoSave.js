@@ -7,14 +7,24 @@ export default class AutoSave
     this.saveFn = saveFn;
 
   }
-getId() {
-  const token = localStorage.getItem('jwtToken');
-  const decoded = decode(token);
-  console.log(decoded.id)
-  return decoded.id
+  getId() {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) return 0;
+    const decoded = decode(token);
+    console.log(decoded.id)
+    return decoded.id
 
-}
-
+  }
+  onGetSearched() {
+    const id = this.getId();
+    if (!id) return
+    return axios.get('/user/' +id);
+   /*  const res = axios.get('/user/' + id)
+                .catch(err => {
+                  console.log(err);
+                })
+    return res; */
+  }
 
   onSave(savedsearches) {
       console.log(savedsearches);
