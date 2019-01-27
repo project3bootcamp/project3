@@ -21,6 +21,7 @@ exports.getMovie = (req, res) => {
     axios.get("https://api.themoviedb.org/3/movie/" + movieID + "/external_ids?api_key=c92cdcfa44e3261c741c830802ba0c44")
         .then(response => {
             let imdb_id = response.data.imdb_id;
+            console.log(imdb_id);
             res.json(imdb_id);
         });
 };

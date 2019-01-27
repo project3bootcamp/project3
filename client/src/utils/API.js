@@ -12,6 +12,10 @@ export default {
   // },
 
   getMovieID: tmdbID => {
+    // axios.get("https://api.themoviedb.org/3/movie/" + tmdbID + "/external_ids?api_key=c92cdcfa44e3261c741c830802ba0c44")
+    //   .then(response => {
+    //     return response.data;
+    //   })
     return axios.get("/movie/" + tmdbID);
   },
   
