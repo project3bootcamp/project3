@@ -6,18 +6,30 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import MovieCard from './MovieCard';
 import API from '../utils/API';
 import ActorCard from './ActorCard';
 import Modal from '@material-ui/core/Modal';
 import AutoSave from './AutoSave';
+import "../App.css";
+import MyButton from './SearchButton';
+import Background from '../images/actormatchbckgrnd.png';
 
 const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    height: "1000px",
+    backgroundImage: "url(" + { Background } + ")",
+    // height: '100vh'
+  },
+  resultsContainer: {
+    // display: 'flex',
+    // flexWrap: 'wrap',
+    height: "100%",
+    backgroundImage: "url(" + { Background } + ")",
+    // height: '100vh'
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -38,6 +50,9 @@ const styles = theme => ({
     padding: theme.spacing.unit * 4,
     outline: 'none',
   },
+  root: {
+    margin: "25px"
+  }
 });
 
 function rand() {
@@ -91,13 +106,13 @@ class ActorSearch extends React.Component {
     this.setState({ searchModalOpen: false });
   };
 
-  componentDidMount() {
-    const {actor1, actor2} = {...this.props};
-    if(actor1 !== undefined && actor2 !== undefined){
-      this.setState({actor1name: actor1,actor2name:actor2})
-      this.searchMatchMovie();
-    }
-  };
+  // componentDidMount() {
+  //   const {actor1, actor2} = {...this.props};
+  //   if(actor1 !== undefined && actor2 !== undefined){
+  //     this.setState({actor1name: actor1,actor2name:actor2})
+  //     this.searchMatchMovie();
+  //   }
+  // };
   
   onHandleSave = () =>{
     const savedName = new AutoSave();
@@ -138,7 +153,7 @@ class ActorSearch extends React.Component {
   searchMatchMovie = () => {
     if (this.state.actor1name === '' || this.state.actor2name === '') {
       console.log("missing something");
-      this.setState({ open: true });
+      this.setState({ actorModalOpen: true });
     };
 
     let actor1 = this.state.actor1name;
@@ -287,12 +302,13 @@ class ActorSearch extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
+      <div className={classes.container}>
         <Grid container spacing={24} >
+
           <Grid item xs={12}>
             <Grid container justify="center" spacing={8} >
               <Paper className={classes.root} elevation={1}>
-                <form className={classes.container} noValidate autoComplete="off">
+                <form noValidate autoComplete="off">
 
                   {/* This Modal will render if one of the text field is empty when User hits the Search button */}
                   <Modal
@@ -354,63 +370,58 @@ class ActorSearch extends React.Component {
               </Paper>
             </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Grid container justify="center" spacing={16} >
-              <Paper className={classes.root} elevation={1}>
-                <Button variant="contained" className={classes.button}
-                  onClick={this.searchMatchMovie}
-                >
-                  Search
-                </Button>
-              </Paper>
-              <Paper className={classes.root} elevation={1}>
-                <Button variant="contained" className={classes.button}
-                  onClick={this.onHandleSave}
-                >
-                  Save Search
-                </Button>
-              </Paper>
-            </Grid>
+
+          <Grid item xs={12}
+            container
+            justify="center"
+            alignItems="flex-start"
+          >
+            {/* <Grid  
+            alignContent="center" 
+            spacing={32} > */}
+                <MyButton 
+                  click={this.searchMatchMovie}
+                  text={"Search"}
+                />
+              <MyButton 
+                  click={this.onHandleSave}
+                  text={"Save Search"}
+                />
+            {/* </Grid> */}
           </Grid>
 
           <Grid item xs={12} >
             <Grid container spacing={16} justify='center' >
-              <Paper className={classes.root} elevation={1}>
-                <p>Matching Movies:</p>
-              </Paper>
             </Grid>
-            {!this.state.actor1imageurl && !this.state.actor2imageurl ? (<Typography variant='h4'>Enter Actors</Typography>) : (
-              <Grid>
+            {!this.state.actor1imageurl && !this.state.actor2imageurl ? (<Typography variant='h4'></Typography>) : (
+              <Grid style={{height: '100%'}}>
                 <Grid item xs={12}>
                   <Grid container justify='center' spacing={32}>
-                    <Paper className={classes.root} >
+                    {/* <Paper className={classes.root} > */}
                       <ActorCard
                         title={this.state.actor1name}
                         image={this.state.actor1imageurl}
                       />
-                    </Paper>
-                    <Paper>
+                    {/* </Paper> */}
+                    {/* <Paper> */}
                       <ActorCard
                         title={this.state.actor2name}
                         image={this.state.actor2imageurl}
                       />
-                    </Paper>
+                    {/* </Paper> */}
                   </Grid>
                 </Grid>
                 <Grid container spacing={32} justify='center' >
                   {/* JMG adjusted the following line */}
-                  {!this.state.MovieListFinal.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :
-                    // JMG adjusted lines 226 - 231, to correspond with the actual state values
+                  {!this.state.MovieListFinal.length ? (<Typography variant='h4'></Typography>) :
                     (this.state.MovieListFinal.map((movie, index) => {
                       return (
                         <Grid key={index} style={{ 'display': 'grid' }} container item xs={12} sm={6} justify='center' >
-                          {/* <Link to={movie.href}> */}
                           <MovieCard
                             title={movie.title}
                             image={movie.image}
                             href={movie.imdbURL}
                           />
-                          {/* </Link> */}
                         </Grid>
                       )
                     })
@@ -431,62 +442,3 @@ ActorSearch.propTypes = {
 };
 
 export default withStyles(styles)(ActorSearch);
-
-/*
-  <form className={classes.container} noValidate autoComplete="off">
-    <TextField
-      id="standard-name"
-      label="Actor 1 Name"
-      className={classes.textField}
-      value={this.state.name}
-      onChange={this.handleChange('actor1name')}
-      margin="normal"
-    />
-    <TextField
-      id="standard-name"
-      label="Actor 2 Name"
-      className={classes.textField}
-      value={this.state.name}
-      onChange={this.handleChange('actor2name')}
-      margin="normal"
-    />
-  </form>
-  <div>
-    <Button variant="contained" className={classes.button}
-      onClick={this.searchMatchMovie}
-    >
-      Search
-      </Button>
-  </div>
-  <div>
-    <p>Matching Movies:</p>
-    <Grid container spacing={32} alignItems="stretch" alignContent="stretch">
-     {JMG adjusted the following line }
-     {!this.state.MovieListFinal.length ? (<Typography variant='h4'>No Movies Found!</Typography>) :
-     // JMG adjusted lines 226 - 231, to correspond with the actual state values
-     (this.state.MovieListFinal.map((movie, index) => {
-       return (
-         <Grid key={index} style={{ 'display': 'grid' }} item xs={12} sm={6} >
-           <MovieCard
-             title={movie.title}
-             image={movie.image}
-           />
-         </Grid>
-       )
-     })
-     )
-   }
-
-    </Grid>
-  </div>
-</div>
-);
-}
-}
-
-ActorSearch.propTypes = {
-classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ActorSearch);
-*/

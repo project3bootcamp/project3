@@ -10,8 +10,8 @@ const store = createStore(
         inititalState, 
         //compose function used chrom extension to display sore data
         compose(applyMiddleware(thunk), 
-                 //window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose 
-                window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_EXTENSION__()
+                 window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose 
+                // window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_EXTENSION__()
                 ));
 
 export default store;

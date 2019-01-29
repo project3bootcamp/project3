@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 const styles = {
   card: {
     maxWidth: 200,
+    margin: 20
   },
   media: {
     height: 200,
@@ -17,7 +18,7 @@ const styles = {
 };
 
 function ActorCard(props) {
-  const { classes, image, title, desc } = props;
+  const { classes, image, title } = props;
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -27,11 +28,8 @@ function ActorCard(props) {
           title={title}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h6">
+          <Typography gutterBottom variant="h5" component="h5">
             {title}
-          </Typography>
-          <Typography component="p">
-            {desc}
           </Typography>
         </CardContent>
       </CardActionArea>
