@@ -11,7 +11,7 @@ const spaceStyle = {
   width: "100%",
   height: "100vh",
   backgroundImage: "url(" + { Background } + ")",
-  fontSize: "20px"
+  fontSize: "20px",
 };
 
 export default class Home extends Component {
@@ -20,7 +20,6 @@ export default class Home extends Component {
   };
   componentDidMount() {
     this.getSearches();
-
   }
   getSearches = () => {
     const savedSearches = new AutoSave();
@@ -39,7 +38,8 @@ export default class Home extends Component {
     return (
       <div style={spaceStyle}>
         Your Search History
-            <Grid container spacing={32} >
+            <Grid container spacing={32} style={spaceStyle}
+            >
           <Grid item xs={12}>
             <Grid container justify="center" spacing={8}>
               {!this.state.searches.length ?
@@ -55,10 +55,11 @@ export default class Home extends Component {
                     <Grid item xs={12}
                       container
                       direction="column"
-                      // justify="center"
-                      // alignItems="center"
-                      style={spaceStyle}>
-                      <MyButton actor1={search.actor1} actor2={search.actor2}>{search.actor1}, {search.actor2}</MyButton>
+                      justify="center"
+                      alignItems="center"
+                      style={{width:"100%"}}
+                      >
+                      <MyButton actor1={search.actor1} actor2={search.actor2}></MyButton>
                     </Grid>
                   )
                 }
