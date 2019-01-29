@@ -33,7 +33,7 @@ class App extends Component {
           <div className="App">
             <Navbar />
                 <Route exact path="/" component={ Home } />
-                <div className="container">
+                <div className="home-container">
                   <Route exact path="/register" component={ Register } />
                   <Route exact path="/login" component={ Login } />
                   <Route exact path="/actorsMatch" component={ActorSearch } />

@@ -17,7 +17,7 @@ export default class AutoSave
   }
   onGetSearched() {
     const id = this.getId();
-    if (!id) return
+    // if (!id) return
     return axios.get('/user/' +id);
    /*  const res = axios.get('/user/' + id)
                 .catch(err => {

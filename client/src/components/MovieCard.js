@@ -6,7 +6,6 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
 
 const styles = {
   card: {
@@ -18,10 +17,10 @@ const styles = {
 };
 
 function MovieCard(props) {
-  const { classes, image, title, desc } = props;
+  const { classes, image, title, href } = props;
   return (
     <Card className={classes.card}>
-        <a href={props.href} target="_blank" rel="noopener noreferrer">
+        <a href={href} target="_blank" rel="noopener noreferrer">
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -29,11 +28,8 @@ function MovieCard(props) {
           title={title}
           />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5" component="h6" style={{fontFamily: 'Josefin Sans', fontSize: '1.5em'}}>
             {title}
-          </Typography>
-          <Typography component="p">
-            {desc}
           </Typography>
         </CardContent>
       </CardActionArea>
