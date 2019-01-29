@@ -1,0 +1,562 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home renders correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Home />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        "User Profile",
+        <WithStyles(Grid)
+          container={true}
+          spacing={32}
+        >
+          <WithStyles(Grid)
+            item={true}
+            xs={12}
+          >
+            <WithStyles(Grid)
+              container={true}
+              justify="center"
+              spacing={8}
+            >
+              <WithStyles(Typography)
+                variant="h4"
+              >
+                No Searches Found!
+              </WithStyles(Typography)>
+              <WithStyles(Grid)
+                item={true}
+                xs={6}
+              >
+                <WithStyles(Paper)
+                  elevation={1}
+                >
+                  <Link
+                    replace={false}
+                    style={
+                      Object {
+                        "color": "#212121",
+                      }
+                    }
+                    to="/actorsMatch"
+                  >
+                     Actors Match
+                  </Link>
+                </WithStyles(Paper)>
+              </WithStyles(Grid)>
+            </WithStyles(Grid)>
+          </WithStyles(Grid)>
+        </WithStyles(Grid)>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      "User Profile",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <WithStyles(Grid)
+            item={true}
+            xs={12}
+          >
+            <WithStyles(Grid)
+              container={true}
+              justify="center"
+              spacing={8}
+            >
+              <WithStyles(Typography)
+                variant="h4"
+              >
+                No Searches Found!
+              </WithStyles(Typography)>
+              <WithStyles(Grid)
+                item={true}
+                xs={6}
+              >
+                <WithStyles(Paper)
+                  elevation={1}
+                >
+                  <Link
+                    replace={false}
+                    style={
+                      Object {
+                        "color": "#212121",
+                      }
+                    }
+                    to="/actorsMatch"
+                  >
+                     Actors Match
+                  </Link>
+                </WithStyles(Paper)>
+              </WithStyles(Grid)>
+            </WithStyles(Grid)>
+          </WithStyles(Grid)>,
+          "container": true,
+          "spacing": 32,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <WithStyles(Grid)
+              container={true}
+              justify="center"
+              spacing={8}
+            >
+              <WithStyles(Typography)
+                variant="h4"
+              >
+                No Searches Found!
+              </WithStyles(Typography)>
+              <WithStyles(Grid)
+                item={true}
+                xs={6}
+              >
+                <WithStyles(Paper)
+                  elevation={1}
+                >
+                  <Link
+                    replace={false}
+                    style={
+                      Object {
+                        "color": "#212121",
+                      }
+                    }
+                    to="/actorsMatch"
+                  >
+                     Actors Match
+                  </Link>
+                </WithStyles(Paper)>
+              </WithStyles(Grid)>
+            </WithStyles(Grid)>,
+            "item": true,
+            "xs": 12,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <WithStyles(Typography)
+                  variant="h4"
+                >
+                  No Searches Found!
+                </WithStyles(Typography)>,
+                <WithStyles(Grid)
+                  item={true}
+                  xs={6}
+                >
+                  <WithStyles(Paper)
+                    elevation={1}
+                  >
+                    <Link
+                      replace={false}
+                      style={
+                        Object {
+                          "color": "#212121",
+                        }
+                      }
+                      to="/actorsMatch"
+                    >
+                       Actors Match
+                    </Link>
+                  </WithStyles(Paper)>
+                </WithStyles(Grid)>,
+              ],
+              "container": true,
+              "justify": "center",
+              "spacing": 8,
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "No Searches Found!",
+                  "variant": "h4",
+                },
+                "ref": null,
+                "rendered": "No Searches Found!",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <WithStyles(Paper)
+                    elevation={1}
+                  >
+                    <Link
+                      replace={false}
+                      style={
+                        Object {
+                          "color": "#212121",
+                        }
+                      }
+                      to="/actorsMatch"
+                    >
+                       Actors Match
+                    </Link>
+                  </WithStyles(Paper)>,
+                  "item": true,
+                  "xs": 6,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <Link
+                      replace={false}
+                      style={
+                        Object {
+                          "color": "#212121",
+                        }
+                      }
+                      to="/actorsMatch"
+                    >
+                       Actors Match
+                    </Link>,
+                    "elevation": 1,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": " Actors Match",
+                      "replace": false,
+                      "style": Object {
+                        "color": "#212121",
+                      },
+                      "to": "/actorsMatch",
+                    },
+                    "ref": null,
+                    "rendered": " Actors Match",
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          "User Profile",
+          <WithStyles(Grid)
+            container={true}
+            spacing={32}
+          >
+            <WithStyles(Grid)
+              item={true}
+              xs={12}
+            >
+              <WithStyles(Grid)
+                container={true}
+                justify="center"
+                spacing={8}
+              >
+                <WithStyles(Typography)
+                  variant="h4"
+                >
+                  No Searches Found!
+                </WithStyles(Typography)>
+                <WithStyles(Grid)
+                  item={true}
+                  xs={6}
+                >
+                  <WithStyles(Paper)
+                    elevation={1}
+                  >
+                    <Link
+                      replace={false}
+                      style={
+                        Object {
+                          "color": "#212121",
+                        }
+                      }
+                      to="/actorsMatch"
+                    >
+                       Actors Match
+                    </Link>
+                  </WithStyles(Paper)>
+                </WithStyles(Grid)>
+              </WithStyles(Grid)>
+            </WithStyles(Grid)>
+          </WithStyles(Grid)>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        "User Profile",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <WithStyles(Grid)
+              item={true}
+              xs={12}
+            >
+              <WithStyles(Grid)
+                container={true}
+                justify="center"
+                spacing={8}
+              >
+                <WithStyles(Typography)
+                  variant="h4"
+                >
+                  No Searches Found!
+                </WithStyles(Typography)>
+                <WithStyles(Grid)
+                  item={true}
+                  xs={6}
+                >
+                  <WithStyles(Paper)
+                    elevation={1}
+                  >
+                    <Link
+                      replace={false}
+                      style={
+                        Object {
+                          "color": "#212121",
+                        }
+                      }
+                      to="/actorsMatch"
+                    >
+                       Actors Match
+                    </Link>
+                  </WithStyles(Paper)>
+                </WithStyles(Grid)>
+              </WithStyles(Grid)>
+            </WithStyles(Grid)>,
+            "container": true,
+            "spacing": 32,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <WithStyles(Grid)
+                container={true}
+                justify="center"
+                spacing={8}
+              >
+                <WithStyles(Typography)
+                  variant="h4"
+                >
+                  No Searches Found!
+                </WithStyles(Typography)>
+                <WithStyles(Grid)
+                  item={true}
+                  xs={6}
+                >
+                  <WithStyles(Paper)
+                    elevation={1}
+                  >
+                    <Link
+                      replace={false}
+                      style={
+                        Object {
+                          "color": "#212121",
+                        }
+                      }
+                      to="/actorsMatch"
+                    >
+                       Actors Match
+                    </Link>
+                  </WithStyles(Paper)>
+                </WithStyles(Grid)>
+              </WithStyles(Grid)>,
+              "item": true,
+              "xs": 12,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <WithStyles(Typography)
+                    variant="h4"
+                  >
+                    No Searches Found!
+                  </WithStyles(Typography)>,
+                  <WithStyles(Grid)
+                    item={true}
+                    xs={6}
+                  >
+                    <WithStyles(Paper)
+                      elevation={1}
+                    >
+                      <Link
+                        replace={false}
+                        style={
+                          Object {
+                            "color": "#212121",
+                          }
+                        }
+                        to="/actorsMatch"
+                      >
+                         Actors Match
+                      </Link>
+                    </WithStyles(Paper)>
+                  </WithStyles(Grid)>,
+                ],
+                "container": true,
+                "justify": "center",
+                "spacing": 8,
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "No Searches Found!",
+                    "variant": "h4",
+                  },
+                  "ref": null,
+                  "rendered": "No Searches Found!",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <WithStyles(Paper)
+                      elevation={1}
+                    >
+                      <Link
+                        replace={false}
+                        style={
+                          Object {
+                            "color": "#212121",
+                          }
+                        }
+                        to="/actorsMatch"
+                      >
+                         Actors Match
+                      </Link>
+                    </WithStyles(Paper)>,
+                    "item": true,
+                    "xs": 6,
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <Link
+                        replace={false}
+                        style={
+                          Object {
+                            "color": "#212121",
+                          }
+                        }
+                        to="/actorsMatch"
+                      >
+                         Actors Match
+                      </Link>,
+                      "elevation": 1,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": " Actors Match",
+                        "replace": false,
+                        "style": Object {
+                          "color": "#212121",
+                        },
+                        "to": "/actorsMatch",
+                      },
+                      "ref": null,
+                      "rendered": " Actors Match",
+                      "type": [Function],
+                    },
+                    "type": [Function],
+                  },
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
